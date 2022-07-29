@@ -1,6 +1,6 @@
 import { services } from "../../service/services";
 
-export const controlerGetProducts = async (req, res, next) => {
+export const controllerGetProducts = async (req, res, next) => {
   try{
     let allProducts;
     await services.productServices().then((products)=> {allProducts = products} 

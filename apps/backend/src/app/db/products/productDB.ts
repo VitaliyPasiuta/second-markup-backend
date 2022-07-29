@@ -1,3 +1,5 @@
+import productsData from '../../../../mock/products.json';
+
 export const productDB = async () => {
   try{
     return await getData();
@@ -20,5 +22,5 @@ const data = [
 ]
 
 async function getData(){
-  return data
+  return productsData;
 }
