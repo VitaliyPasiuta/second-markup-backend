@@ -1,4 +1,4 @@
-import productsData from '../../../../mock/products.json';
+import * as productsData from '../../../../mock/products.json';
 
 export const productDB = async () => {
   try{

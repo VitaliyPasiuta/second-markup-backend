@@ -10,7 +10,6 @@ export const controllerGetProducts = async (req, res, next) => {
     next();
   }
   catch(e){
-    console.log('Error: ', e);
     res.sendStatus(500) && next(e)
   }
 }
