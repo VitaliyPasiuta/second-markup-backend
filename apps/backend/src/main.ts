@@ -4,12 +4,15 @@
  */
 
 import * as express from 'express';
+import routers from './app/router/routers';
 
 const app = express();
 
 app.get('/api', (req, res) => {
   res.send({ message: 'Welcome to backend!' });
 });
+
+app.use('/api', routers);
 
 const port = process.env.port || 3333;
 const server = app.listen(port, () => {
