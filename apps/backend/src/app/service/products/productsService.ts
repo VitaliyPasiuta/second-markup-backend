@@ -1,8 +1,9 @@
+import { Product } from "../../../types/product";
 import { db } from "../../db/db";
 
-export const productServices = async ()=> {
+export const productServices = async (): Promise<Product[]>=> {
   try{
-    let products;
+    let products: Product[];
     await db.productDB().then((curentProduct)=> products = curentProduct);
     return products;
   }
@@ -10,6 +11,3 @@ export const productServices = async ()=> {
     throw new Error(e);
   }
 }
-
-const data =  // mock data
-  {prod: 'product'};

@@ -1,6 +1,7 @@
 import * as productsData from '../../../../mock/products.json';
+import { Product } from '../../../types/product';
 
-export const productDB = async () => {
+export const productDB = async (): Promise<Product[]> => {
   try{
     return await getData();
   }
@@ -9,18 +10,7 @@ export const productDB = async () => {
   }
 }
 
-
-const data = [
-  {data: 1,
-  price: 41,
-  title: "String"
-  },
-  {data: 2,
-    price: 52,
-    title: "String - 2"
-    },
-]
-
-async function getData(){
-  return productsData;
+async function getData(): Promise<Product[]>{
+  const product: Product[] = productsData;
+  return product;
 }
