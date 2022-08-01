@@ -12,23 +12,23 @@ beforeAll(async () => {
 })
 
 describe('product tests: ', () => {
-  let producstData;
+  let productsData;
   async function getData() {
-    await db.productDB().then((data) => producstData = data); 
+    await db.productDB().then((data) => productsData = data); 
   }
   it('products should\'t be empty', async () => {
     await getData();
-    expect(JSON.stringify(producstData)).not.toBe(undefined && null && 'undefined' && 'null' && '[]' && '{}');
+    expect(JSON.stringify(productsData)).not.toBe(undefined && null && 'undefined' && 'null' && '[]' && '{}');
     });
 
-  it('should return 200 & valid response if request param list is empity', done => {
+  it('should return 200 & valid response if request param list is empty', done => {
     request(server)
       .get(`/api/products/all`)
       .expect('Content-Type', /json/)
       .expect(200)
       .end((err, res) => {
         if (err) return done(err)
-        expect(res.body).toBe(JSON.stringify(producstData));
+        expect(res.body).toStrictEqual(productsData);
         done()
       })
   })

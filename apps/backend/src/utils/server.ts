@@ -1,10 +1,11 @@
 import * as express from "express";
 import routers from "../app/router/routers";
 import { Express } from "express";
-import { nextTick } from "process";
+import * as cors from 'cors';
 
 export const createServer = async (): Promise<Express> => {
   const app = express();
+  app.use(cors())
   
   app.get('/api', (req, res) => {
     res.send({ message: 'Welcome to backend!' });
