@@ -8,7 +8,7 @@ import { createServer } from '../utils/server';
 let server: Express
 
 beforeAll(async () => {
-  server = await createServer()
+  server = await createServer(true);
 })
 
 describe('product tests: ', () => {

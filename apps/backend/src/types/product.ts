@@ -7,5 +7,5 @@ export interface Product {
   manufacturer: string,
   category: string,
   sale?: number,
-  "_id": string,
+  id: string,
 }

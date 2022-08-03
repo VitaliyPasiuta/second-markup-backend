@@ -1,7 +1,9 @@
-import { likedDB } from "./liked/likedDB";
+import { likedAddBD, likedDB, likedGetAllDB } from "./liked/likedDB";
 import { productDB } from "./products/productDB";
 
 export const db = {
   productDB: productDB,
-  likedDB
+  likedDB,
+  likedAddBD,
+  likedGetAllDB
 } 

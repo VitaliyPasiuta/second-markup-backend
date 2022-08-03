@@ -3,7 +3,7 @@ import routers from "../app/router/routers";
 import { Express } from "express";
 import * as cors from 'cors';
 
-export const createServer = async (): Promise<Express> => {
+export const createServer = async (isTest = false): Promise<Express> => {
   const app = express();
   app.use(cors())
   
@@ -12,8 +12,15 @@ export const createServer = async (): Promise<Express> => {
   });
   
   app.use('/api', routers);
-  
-  const port = process.env.port || 3333;
+
+  let PortBoofer;
+  if(isTest){
+    PortBoofer = 8080;
+  }
+  else{
+    PortBoofer = 3333;
+  }
+  const port = process.env.port || PortBoofer;
   const server = app.listen(port, () => {
     console.log(`Listening at http://localhost:${port}/api`);
   });
