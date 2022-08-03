@@ -64,5 +64,30 @@ export const likedGetAllDB = async () => {
       await prisma.$disconnect()
       process.exit(1)
     })
+}
 
+export const likedDeleteDB = async (idArgument: string) => {
+  console.log("Uniqum id: ", idArgument);
+  console.log("All products: ", await likedGetAllDB());
+  
+  
+  const likedDelete = async () => {
+    const product = prisma.product.delete({
+      where: {
+        id: idArgument,
+      }
+    })
+    return product;
+  }
+
+  return await likedDelete()
+  .then(async (data) => {
+    await prisma.$disconnect();  
+    return data;
+  })
+  .catch(async (e) => {
+    console.error(e)
+    await prisma.$disconnect()
+    process.exit(1)
+  })
 }
