@@ -3,9 +3,6 @@ import { services } from '../../service/services';
 
 export const controllerGetLiked = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try{
-    // await services.likedServicesAdd('62e97aee35e5caa5ebeb0cf0'); // --- add liked products
-    // 2baf95bb8cf824dc5884e2c
-    await services.likedServicesDelete('62baf95bb8cf824dc5884e2c');
     const likedProducts = await services.likedServices();
     res.json(likedProducts);
     next();
@@ -14,3 +11,25 @@ export const controllerGetLiked = async (req: Request, res: Response, next: Next
     res.sendStatus(500) && next(e)
   }
 };
+
+export const controllerAddLiked = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+  try{
+    await services.likedServicesAdd(req.params.id); 
+    res.sendStatus(200);
+    next();
+  }
+  catch(e){
+    res.sendStatus(500) && next(e);
+  }
+};
+
+export const controllerDeleteLiked =  async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+  try{
+    await services.likedServicesDelete(req.params.id);
+    res.sendStatus(200);
+    next();
+  }
+  catch(e){
+    res.sendStatus(500) && next(e);
+  }
+}

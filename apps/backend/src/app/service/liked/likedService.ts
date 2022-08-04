@@ -53,6 +53,9 @@ export const likedServicesGet = async (): Promise<Product[]> => {
 
 export const likedServicesAdd = async (id: string) => {
   try {
+    if(id === ''){
+      return
+    } 
     const products: Product[] = await likedServicesGet();
     const allProducts: Product[] = await services.productServices();
     const curentProduct: Product = allProducts.find((product) => product.id === id);
