@@ -1,14 +1,25 @@
 import { db } from '../app/db/db';
 import * as request from 'supertest';
 import { Express } from 'express-serve-static-core'
+import { Server } from "http";
 
 
 import { createServer } from '../utils/server';
 
-let server: Express
+let app: Express;
+let server: Server;
 
 beforeAll(async () => {
-  server = await createServer(true);
+  const serverBoofer = await createServer(true);
+  app = serverBoofer.app;
+  server = serverBoofer.server;
+  // server = (await createServer(true)).app;
+}); 
+
+afterAll( async () => {
+  server.close();
+  // serverVariable = (await createServer(true)).server;
+  // serverVariable.close();
 })
 
 describe('product tests: ', () => {
@@ -22,7 +33,7 @@ describe('product tests: ', () => {
     });
 
   it('should return 200 & valid response if request param list is empty', done => {
-    request(server)
+    request(app)
       .get(`/api/products/all`)
       .expect('Content-Type', /json/)
       .expect(200)

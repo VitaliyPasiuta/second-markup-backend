@@ -2,8 +2,9 @@ import * as express from "express";
 import routers from "../app/router/routers";
 import { Express } from "express";
 import * as cors from 'cors';
+import { Server } from "http";
 
-export const createServer = async (isTest = false): Promise<Express> => {
+export const createServer = async (isTest = false): Promise<{app: Express, server: Server}> => {
   const app = express();
   app.use(cors())
   
@@ -25,5 +26,5 @@ export const createServer = async (isTest = false): Promise<Express> => {
     console.log(`Listening at http://localhost:${port}/api`);
   });
   server.on('error', console.error);
-  return app;
+  return {app, server};
 }

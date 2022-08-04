@@ -2,8 +2,8 @@ import { likedServicesAdd, likedServicesDelete, likedServicesGet } from "./liked
 import { productServices } from "./products/productsService";
 
 export const services = {
-  productServices: productServices,
-  likedServices: likedServicesGet,
+  productServices,
+  likedServicesGet,
   likedServicesAdd,
   likedServicesDelete,
 }

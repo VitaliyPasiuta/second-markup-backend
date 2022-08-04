@@ -21,3 +21,15 @@ model Product {
   category     String
   sale         Int
 }
+
+model ProductLiked {
+  id           String      @id
+  title        String
+  price        Int
+  image        String
+  colors       String 
+  description  String
+  manufacturer String
+  category     String
+  sale         Int
+}

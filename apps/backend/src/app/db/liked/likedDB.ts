@@ -1,27 +1,13 @@
-import * as likedData from '../../../../mock/liked.json';
-import { Product } from '../../../types/product';
+import { Product, ProductDB } from '../../../types/product';
 import { PrismaClient } from '@prisma/client';
 
 
 const prisma = new PrismaClient();
 
-export const likedDB = async (): Promise<Product[]> => {
-  try {
-    return await getData();
-  } catch (e) {
-    throw new Error(`likedDB: ${e}`);
-  }
-}
-
-async function getData(): Promise<Product[]> {
-  const liked: Product[] = likedData;
-  return liked;
-}
-
-export const likedAddBD = async (productArgument: Product) => {
+export const likedAddBD = async (productArgument: Product): Promise<void> => {
   const likedAdd = async () => {
-    const colorsArray = productArgument.colors;
-    return await prisma.product.create({
+    const colorsArray: string[] = productArgument.colors;
+    return await prisma.productLiked.create({
       data: {
         id: productArgument.id,
         title: productArgument.title,
@@ -34,45 +20,39 @@ export const likedAddBD = async (productArgument: Product) => {
         sale: productArgument.sale,
       }
     });
-    // console.log(typeof product[0]);
-
   }
 
   likedAdd()
     .then(async () => {
       await prisma.$disconnect()
     })
-    .catch(async (e) => {
+    .catch(async (e: Error) => {
       console.error(e)
       await prisma.$disconnect()
       process.exit(1)
     })
 }
 
-export const likedGetAllDB = async () => {
-  const likedGetAll = async () => {
-    const products = await prisma.product.findMany();
+export const likedGetAllDB = async (): Promise<ProductDB[]> => {
+  const likedGetAll = async (): Promise<ProductDB[]> => {
+    const products: ProductDB[] = await prisma.productLiked.findMany();
     return products;
   }
   return await likedGetAll()
-    .then(async (data) => {
+    .then(async (data: ProductDB[]) => {
       await prisma.$disconnect();
       return data;
     })
-    .catch(async (e) => {
+    .catch(async (e: Error) => {
       console.error(e)
       await prisma.$disconnect()
       process.exit(1)
     })
 }
 
-export const likedDeleteDB = async (idArgument: string) => {
-  console.log("Uniqum id: ", idArgument);
-  console.log("All products: ", await likedGetAllDB());
-  
-  
-  const likedDelete = async () => {
-    const product = prisma.product.delete({
+export const likedDeleteDB = async (idArgument: string): Promise<ProductDB> => {
+  const likedDelete = async (): Promise<ProductDB> => {
+    const product: ProductDB = await prisma.productLiked.delete({
       where: {
         id: idArgument,
       }
@@ -81,13 +61,13 @@ export const likedDeleteDB = async (idArgument: string) => {
   }
 
   return await likedDelete()
-  .then(async (data) => {
-    await prisma.$disconnect();  
-    return data;
-  })
-  .catch(async (e) => {
-    console.error(e)
-    await prisma.$disconnect()
-    process.exit(1)
-  })
+    .then(async (data: ProductDB) => {
+      await prisma.$disconnect();
+      return data;
+    })
+    .catch(async (e: Error) => {
+      console.error(e)
+      await prisma.$disconnect()
+      process.exit(1)
+    })
 }

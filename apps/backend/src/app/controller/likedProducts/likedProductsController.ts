@@ -3,7 +3,7 @@ import { services } from '../../service/services';
 
 export const controllerGetLiked = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try{
-    const likedProducts = await services.likedServices();
+    const likedProducts = await services.likedServicesGet();
     res.json(likedProducts);
     next();
   }
