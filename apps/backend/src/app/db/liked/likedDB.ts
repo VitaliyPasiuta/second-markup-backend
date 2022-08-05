@@ -13,7 +13,7 @@ export const likedAddBD = async (productArgument: Product): Promise<void> => {
         title: productArgument.title,
         price: productArgument.price,
         image: productArgument.image,
-        colors: `${colorsArray[0]},${colorsArray[1]},${colorsArray[2]},${colorsArray[3]}`,
+        colors: `${colorsArray[0]},${colorsArray[1]},${colorsArray[2]},${colorsArray[3]},${colorsArray[4]}`,
         description: productArgument.description,
         manufacturer: productArgument.manufacturer,
         category: productArgument.category,
