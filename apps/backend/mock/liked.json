@@ -1,0 +1,19 @@
+[
+  {
+    "id": "62baf95bb8cf824dc5884e2c",
+    "title": "Manhattan Plank",
+    "price": 951,
+    "image": "../../assets/img/card-img-3.jpg",
+    "colors": [
+      "gray brown",
+      "gray",
+      "brown",
+      "",
+      "light brown"
+    ],
+    "description": "Quis magna do ea proident aute. Lorem ex ut veniam non amet. Non officia cillum enim fugiat occaecat magna commodo. Mollit ipsum est officia sit esse adipisicing officia dolor occaecat occaecat magna aute. Amet et eu occaecat ipsum quis ullamco adipisicing qui cillum ipsum.\r\n",
+    "manufacturer": "Omatom",
+    "category": "Enviro Products",
+    "sale": 17
+  }
+]
