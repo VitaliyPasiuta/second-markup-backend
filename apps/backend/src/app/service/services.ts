@@ -1,4 +1,5 @@
 import { likedServicesAdd, likedServicesDelete, likedServicesGet } from "./liked/likedService";
+import { cartServicesAdd, cartServicesDelete, cartServicesGet } from "./cart/cartService";
 import { productServices } from "./products/productsService";
 
 export const services = {
@@ -6,4 +7,7 @@ export const services = {
   likedServicesGet,
   likedServicesAdd,
   likedServicesDelete,
+  cartServicesGet,
+  cartServicesAdd,
+  cartServicesDelete,
 }
