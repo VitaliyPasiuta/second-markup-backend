@@ -8,28 +8,28 @@ export const controllerGetLiked = async (req: Request, res: Response, next: Next
     next();
   }
   catch(e){
-    res.sendStatus(500) && next(e)
+    res.json({"status": 500}) && next(e)
   }
 };
 
 export const controllerAddLiked = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try{
     await services.likedServicesAdd(req.params.id); 
-    res.sendStatus(200);
+    res.json({"status": 200});
     next();
   }
   catch(e){
-    res.sendStatus(500) && next(e);
+    res.json({"status": 500}) && next(e);
   }
 };
 
 export const controllerDeleteLiked =  async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try{
     await services.likedServicesDelete(req.params.id);
-    res.sendStatus(200);
+    res.json({"status": 200});
     next();
   }
   catch(e){
-    res.sendStatus(500) && next(e);
+    res.json({"status": 500}) && next(e);
   }
 }
